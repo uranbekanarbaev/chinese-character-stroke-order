@@ -1,0 +1,69 @@
+appName:
+Chinese Character Stroke Order
+
+shortDesc:
+Instant animated chinese characters stroke order lookup. Open chinese character stroke order animation in the browser anytime.
+
+
+storeDesc:
+
+🖊️ Get the Writing Sequence Right for Every Hanzi
+
+Every hanzi follows a fixed path — write it correctly once and the pattern stays in muscle memory for life. This extension gives you animated chinese character stroke order directly in your browser, so you can verify the correct sequence for any character without switching tabs or leaving the page.
+
+🔍 Instant Lookup While Reading
+
+Hover over or click any hanzi on a webpage to open the chinese character stroke order animation step by step. Whether you are reading an article, drilling vocabulary, or following subtitles, stroke order for chinese characters is one click away. The popup opens in under a second and closes quietly when you are done, leaving your reading context intact.
+
+📐 How to Use
+
+1️⃣ Hover over or highlight any hanzi on the current page.
+2️⃣ Click the extension icon — the animated chinese characters stroke order popup opens instantly.
+3️⃣ Watch each mark appear in sequence. Replay as many times as you need.
+4️⃣ Close the popup and continue reading wherever you left off.
+
+✍️ Extension Features
+
+➤ Animated chinese stroke order characters covering thousands of simplified and traditional hanzi.
+➤ Covers basic chinese characters stroke order all the way through advanced HSK 9 characters.
+➤ Every diagram follows stroke order for writing chinese characters, top to bottom and left to right.
+➤ Works on any website: news portals, social media, textbooks, subtitles, and flashcard apps.
+➤ Lightweight popup that stays completely out of your reading flow.
+
+🀄 Extensive Character Coverage
+
+The extension covers all high-frequency writing units and thousands of less common characters at every level. From everyday characters like 的, 是, 吗, and 家 to literary and classical hanzi, every entry plays the correct sequence immediately. The chinese character stroke order for each entry is sourced from official national character data and includes both simplified and traditional forms. Type any hanzi into the lookup field and the animation starts at once. The lookup is instant — no server wait, no page refresh, no loading spinner. Results appear as you type, with no delay regardless of how rare the writing is.
+
+📄 Printable Worksheets for Practice
+
+For offline study, the extension links to a worksheet generator. Create a printable chinese character stroke order worksheet for any vocabulary set, choose a grid style, and print directly. Grid density, font size, and row count are all adjustable before you print. Each finished sheet follows the official sequence rules and works for classroom teaching, HSK exam preparation, or daily handwriting drills.
+
+🌏 Simplified and Traditional Hanzi
+
+Both simplified chinese characters stroke order and the traditional sequences used in Taiwan and Hong Kong are supported. Mark count and direction can differ significantly between the two writing systems, and the extension labels each animation clearly. Whether your curriculum follows simplified or traditional hanzi, the correct sequence is always one click away.
+
+📚 Who Uses This Extension
+
+▸ Students learning how to write chinese characters stroke order correctly from the very first lesson — even a single repetition of the wrong path sets back progress.
+▸ Teachers who need chinese character order stroke reference during class for any unfamiliar hanzi.
+▸ Self-learners checking writing chinese characters stroke order for vocabulary before practising on paper.
+▸ Any reader who wants to look up a hanzi sequence without leaving the current page.
+
+❓ Frequently Asked Questions
+
+❓ Does this work on all websites?
+💡 Yes. The extension activates on any webpage containing hanzi, regardless of the site.
+
+❓ What is the difference between simplified and traditional hanzi writing sequences?
+💡 Chinese character writing stroke order follows the mainland China national standard.
+
+❓ Can I look up de chinese character stroke order or hao chinese character stroke order while reading?
+💡 Yes — and any other hanzi as well. The popup appears directly over the page.
+
+❓ Is there a printable practice option?
+💡 Yes. The worksheet generator creates a chinese character stroke order worksheet.
+
+❓ Which HSK levels are covered?
+💡 All levels — HSK 1 through HSK 9. 
+
+Correct chinese character stroke order builds muscle memory, sharpens recognition, and makes handwriting easier to read. Every unit you learn with the right sequence reinforces the next one. Install the extension and have stroke order for chinese characters available on every page.
