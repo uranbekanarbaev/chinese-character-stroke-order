@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chinese Character Stroke Order</title>
+  <meta name="description" content="See animated stroke order for any Chinese character. Search by hanzi or pinyin, view step-by-step diagrams, and print practice sheets.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Noto+Serif+SC&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ── Layout ──────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- Left icon rail -->
+  <aside class="rail" id="rail">
+    <button class="rail-btn active" id="railSearch" title="Type character">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <button class="rail-btn" id="railDraw" title="Draw character">
+      <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+    </button>
+    <div class="rail-sep"></div>
+    <button class="rail-btn" id="railReplay" title="Replay animation" disabled>
+      <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <div class="rail-sep"></div>
+    <button class="rail-btn" id="railPrint" title="Print diagrams" disabled>
+      <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    </button>
+  </aside>
+
+  <!-- Center main -->
+  <main class="center" id="center">
+
+    <!-- Search bar -->
+    <div class="search-bar" id="searchBar">
+      <div class="search-cn-hint" id="searchHint">字</div>
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Type a character or pinyin…"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        maxlength="10"
+      >
+      <button class="search-btn" id="searchBtn">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </div>
+
+    <!-- Draw canvas (site) -->
+    <div class="draw-area" id="drawArea">
+      <div class="draw-label">Draw a character to recognize</div>
+      <div class="draw-area-inner">
+        <div class="draw-canvas-wrap">
+          <canvas id="siteCanvas" width="320" height="220"></canvas>
+          <div class="draw-grid" aria-hidden="true"></div>
+          <button class="draw-clear" id="siteClear" hidden title="Clear">✕</button>
+        </div>
+        <div class="draw-actions" id="drawActions" hidden>
+          <button class="draw-recognize-btn" id="siteRecognize">Recognize →</button>
+          <span class="draw-status" id="drawStatus"></span>
+        </div>
+        <div class="draw-suggestions" id="drawSuggestions" hidden></div>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="emptyState" hidden>
+      <div class="empty-char">字</div>
+      <p>Search any Chinese character to see its stroke order</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="error-state" id="errorState" hidden>
+      No stroke data found. Try a single hanzi (e.g.&nbsp;<strong>我</strong>).
+    </div>
+
+    <!-- Animation area -->
+    <div class="anim-area" id="animArea" hidden>
+      <div class="anim-header">
+        <span class="anim-char" id="animChar"></span>
+        <span class="stroke-counter" id="strokeCounter"></span>
+      </div>
+      <div id="writerTarget" class="writer-target"></div>
+      <div class="anim-actions" id="animActions" hidden>
+        <button class="btn-practice" id="btnPractice">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+          Practice writing
+        </button>
+      </div>
+    </div>
+
+    <!-- Practice mode -->
+    <div class="practice-area" id="practiceArea" hidden>
+      <div class="practice-header">
+        <span class="practice-title">Practice: <strong id="practiceChar"></strong></span>
+        <button class="practice-exit" id="practiceExit">✕ Exit practice</button>
+      </div>
+      <div class="practice-hint">Draw each stroke in the correct order</div>
+      <div id="practiceTarget" class="writer-target"></div>
+      <div class="practice-feedback" id="practiceFeedback"></div>
+      <div class="practice-score" id="practiceScore" hidden>
+        <div class="score-icon" id="scoreIcon"></div>
+        <div class="score-text" id="scoreText"></div>
+        <button class="btn-retry" id="retryBtn">Try again</button>
+      </div>
+    </div>
+
+    <!-- Diagrams -->
+    <div class="diagrams-area" id="diagramsArea" hidden>
+      <div class="diagrams-title">Stroke Order Diagrams</div>
+      <div class="diagrams-grid" id="diagramsGrid"></div>
+    </div>
+
+  </main>
+
+  <!-- Right panel -->
+  <aside class="panel" id="panel">
+
+    <!-- Theme toggle -->
+    <div class="panel-theme">
+      <button class="theme-btn" id="themeBtn" title="Toggle theme">
+        <span class="theme-icon" id="themeIcon">☀</span>
+      </button>
+    </div>
+
+    <div class="panel-body">
+
+      <!-- Script -->
+      <div class="panel-section">
+        <div class="panel-label">Script</div>
+        <div class="seg-ctrl">
+          <button class="seg-btn active" id="btnSimplified">Simplified</button>
+          <button class="seg-btn" id="btnTraditional">Traditional</button>
+        </div>
+      </div>
+
+      <!-- Speed -->
+      <div class="panel-section">
+        <div class="panel-label">Speed</div>
+        <div class="seg-ctrl">
+          <button class="seg-btn" data-speed="0.5">Slow</button>
+          <button class="seg-btn active" data-speed="1">Normal</button>
+          <button class="seg-btn" data-speed="2">Fast</button>
+        </div>
+      </div>
+
+      <!-- Char info (shown after load) -->
+      <div class="panel-section" id="charInfoSection" hidden>
+        <div class="panel-label">Character</div>
+        <div class="char-info">
+          <div class="char-info-big" id="charInfoBig"></div>
+          <div class="char-info-meta" id="charInfoMeta"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom links -->
+    <div class="panel-footer">
+      <div class="footer-block">
+        <a href="mailto:uranbekanarbaev@gmail.com" class="footer-link">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          uranbekanarbaev@gmail.com
+        </a>
+      </div>
+
+      <div class="footer-block">
+        <div class="footer-stars" id="rateStars">
+          <button class="star-btn" data-v="1">★</button>
+          <button class="star-btn" data-v="2">★</button>
+          <button class="star-btn" data-v="3">★</button>
+          <button class="star-btn" data-v="4">★</button>
+          <button class="star-btn" data-v="5">★</button>
+        </div>
+        <div class="footer-rate-label" id="rateLabel"></div>
+      </div>
+
+      <div class="footer-links">
+        <a href="/privacy" class="footer-tiny">Privacy</a>
+        <span class="footer-dot">·</span>
+        <a href="/terms" class="footer-tiny">Terms</a>
+        <span class="footer-dot">·</span>
+        <span class="footer-tiny ver">v2.0</span>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
+<script src="js/lib/char-lookup.js"></script>
+<script src="js/amplitude.js"></script>
+<script src="js/animator.js"></script>
+<script src="js/diagrams.js"></script>
+<script src="js/practice.js"></script>
+<script src="js/draw.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
