@@ -1,0 +1,14 @@
+{
+  "name": "chinese-character-stroke-order",
+  "version": "1.2.0",
+  "description": "Chrome extension + web app: animated stroke order for any Chinese character, with a practice/quiz mode.",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
