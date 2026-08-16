@@ -27,7 +27,7 @@ const SIMP_TO_TRAD = {
   '图':'圖','问':'問','现':'現','想':'想','小':'小','义':'義',
 };
 
-// ── DOM refs ────────────────────────────────────────────────────────────────
+// DOM refs
 const searchInput     = document.getElementById('searchInput');
 const searchBtn       = document.getElementById('searchBtn');
 const emptyState      = document.getElementById('emptyState');
@@ -61,7 +61,7 @@ let currentChar  = '';
 let currentSpeed = 1;
 let isDark = false;
 
-// ── Theme ────────────────────────────────────────────────────────────────────
+// Theme
 function applyTheme(dark) {
   isDark = dark;
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
@@ -75,7 +75,7 @@ else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme(t
 
 themeBtn.addEventListener('click', () => { applyTheme(!isDark); });
 
-// ── Script toggle ─────────────────────────────────────────────────────────────
+// Script toggle
 let useTraditional = false;
 
 btnSimplified.addEventListener('click', () => setScript(false));
@@ -90,7 +90,7 @@ function setScript(trad) {
   if (currentChar) loadChar(currentChar);
 }
 
-// ── Speed ─────────────────────────────────────────────────────────────────────
+// Speed
 document.querySelectorAll('.seg-btn[data-speed]').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.seg-btn[data-speed]').forEach(b => b.classList.remove('active'));
@@ -103,7 +103,7 @@ document.querySelectorAll('.seg-btn[data-speed]').forEach(btn => {
   });
 });
 
-// ── Search ────────────────────────────────────────────────────────────────────
+// Search
 searchBtn.addEventListener('click', handleSearch);
 searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleSearch(); });
 railSearch.addEventListener('click', () => {
@@ -125,7 +125,7 @@ function handleSearch() {
   loadChar(char);
 }
 
-// ── Load character ────────────────────────────────────────────────────────────
+// Load character
 function loadChar(char) {
   currentChar = char;
   Practice.exit();
@@ -203,7 +203,7 @@ function setRailEnabled(on) {
   if (animActions) animActions.hidden = !on;
 }
 
-// ── Rail actions ──────────────────────────────────────────────────────────────
+// Rail actions
 railReplay.addEventListener('click', () => {
   Animator.replay();
   ampWeb.track('Сайт_анимация_повторена', { иероглиф: currentChar });
@@ -239,7 +239,7 @@ document.getElementById('practiceExit').addEventListener('click', () => {
   }
 }, { once: false });
 
-// ── Stars / rating ────────────────────────────────────────────────────────────
+// Stars / rating
 const RATING_FORM_URL = 'https://forms.gle/Tx8ADvW8rzRahTo16';
 
 rateStars.querySelectorAll('.star-btn').forEach(btn => {
@@ -259,7 +259,7 @@ rateStars.querySelectorAll('.star-btn').forEach(btn => {
   });
 });
 
-// ── Keyboard shortcuts ────────────────────────────────────────────────────────
+// Keyboard shortcuts
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { searchInput.blur(); Practice.exit(); railPractice.classList.remove('active'); }
   if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -294,7 +294,7 @@ if (railDraw) {
   });
 }
 
-// ── URL routing: /chinese-stroke-order/我 ─────────────────────────────────────
+// URL routing: /chinese-stroke-order/我
 (() => {
   const CHINESE_RE_URL = /[一-鿿㐀-䶿豈-﫿]/;
   // Works in iframe (src is /chinese-stroke-order/index.html?char=X)

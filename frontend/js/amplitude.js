@@ -14,7 +14,7 @@ const ampWeb = (() => {
   const AHA_KEY    = '_amp_aha';         // aha moment уже отправлен
   const VISIT_KEY  = '_amp_visits';      // общее кол-во визитов
 
-  // ── device_id (сшивка воронки) ─────────────────────────────────────────────
+  // device_id (сшивка воронки)
   function _initDeviceId() {
     const p   = new URLSearchParams(location.search);
     const ext = p.get('amp_did');
@@ -30,7 +30,7 @@ const ampWeb = (() => {
     return id;
   }
 
-  // ── visit counter ──────────────────────────────────────────────────────────
+  // visit counter
   function _initVisits() {
     const v = JSON.parse(localStorage.getItem(VISIT_KEY) || '{"n":0}');
     const firstVisit = v.n === 0;
@@ -39,7 +39,7 @@ const ampWeb = (() => {
     return { total: v.n, firstVisit };
   }
 
-  // ── источник трафика ───────────────────────────────────────────────────────
+  // источник трафика
   function detectSource(isFromExt) {
     if (isFromExt) return 'расширение';
     const ref = document.referrer;
@@ -48,13 +48,13 @@ const ampWeb = (() => {
     return 'другое';
   }
 
-  // ── state ──────────────────────────────────────────────────────────────────
+  // state
   const deviceId      = _initDeviceId();
   const fromExtension = deviceId.startsWith('cso_');
   const _lang         = navigator.language || 'en';
   const visits        = _initVisits();
 
-  // ── low-level send ─────────────────────────────────────────────────────────
+  // low-level send
   function _post(payload) {
     fetch(ENDPOINT, {
       method: 'POST', keepalive: true,
@@ -63,7 +63,7 @@ const ampWeb = (() => {
     }).catch(() => {});
   }
 
-  // ── track ──────────────────────────────────────────────────────────────────
+  // track
   function track(eventType, properties) {
     _post({
       api_key: API_KEY,
@@ -82,7 +82,7 @@ const ampWeb = (() => {
     });
   }
 
-  // ── identify: обновить user properties ────────────────────────────────────
+  // identify: обновить user properties
   function identify(props) {
     _post({
       api_key: API_KEY,
@@ -95,7 +95,7 @@ const ampWeb = (() => {
     });
   }
 
-  // ── onSuccessfulRequest ────────────────────────────────────────────────────
+  // onSuccessfulRequest
   // Вызывать после каждого успешно загруженного иероглифа.
   // Обновляет счётчик, вызывает identify(), при 5-м запросе, AHA moment.
   // Возвращает { номер_запроса, первый_запрос }.

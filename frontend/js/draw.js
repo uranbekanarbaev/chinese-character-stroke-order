@@ -22,7 +22,7 @@ const Draw = (() => {
   let hasDrawn = false;
   let onRecognize = null;
 
-  // ── Canvas drawing ──────────────────────────────────────────────────────────
+  // Canvas drawing
   function getPos(e) {
     const r = siteCanvas.getBoundingClientRect();
     const src = e.touches ? e.touches[0] : e;
@@ -76,7 +76,7 @@ const Draw = (() => {
     drawStatus.textContent = '';
   }
 
-  // ── Recognition ─────────────────────────────────────────────────────────────
+  // Recognition
   siteRecognize.addEventListener('click', async () => {
     if (!ink.length) return;
     siteRecognize.disabled = true;
